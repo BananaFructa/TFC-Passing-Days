@@ -24,7 +24,7 @@ import java.util.List;
 public class PassingDays {
     public static final String modId = "tfcpassingdays";
     public static final String name = "TFC Passing Days";
-    public static final String version = "1.0.0";
+    public static final String version = "0.0.1";
 
     @Mod.EventHandler
     public void init(FMLPreInitializationEvent event) {
@@ -37,7 +37,7 @@ public class PassingDays {
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void onTick(TickEvent.ClientTickEvent event) {
-        if (await && Minecraft.getMinecraft().world != null && Minecraft.getMinecraft().world.provider != null) {
+        if (await && Minecraft.getMinecraft().world != null && Minecraft.getMinecraft().world.provider != null && Minecraft.getMinecraft().world.provider.getDimension() == 0) {
             Utils.writeDeclaredField(World.class, Minecraft.getMinecraft().world, "field_73011_w", new PassingDayWorldProviderClient(Minecraft.getMinecraft().world.provider), true);
             await = false;
         }
